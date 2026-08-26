@@ -21,10 +21,20 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter E-Commerce',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.deepPurple,
+            brightness: Brightness.light,
+          ),
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+          ),
           fontFamily: 'Lato',
         ),
-        home: ProductListScreen(),
+        home: const ProductListScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );
