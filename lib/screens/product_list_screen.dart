@@ -38,9 +38,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     icon: const Icon(Icons.shopping_cart),
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (ctx) => const CartScreen(),
-                        ),
+                        MaterialPageRoute(builder: (ctx) => const CartScreen()),
                       );
                     },
                   ),
@@ -95,9 +93,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
               mainAxisSpacing: 10,
             ),
             itemBuilder: (ctx, index) {
-              return ProductItem(
-                product: products[index],
-              );
+              return ProductItem(product: products[index]);
             },
           );
         },
@@ -109,17 +105,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
 class ProductItem extends StatelessWidget {
   final Product product;
 
-  const ProductItem({
-    super.key,
-    required this.product,
-  });
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<CartProvider>(
-      context,
-      listen: false,
-    );
+    final cart = Provider.of<CartProvider>(context, listen: false);
 
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
@@ -128,18 +118,13 @@ class ProductItem extends StatelessWidget {
       builder: (context, value, child) {
         return Transform.translate(
           offset: Offset(0, 50 * (1 - value)),
-          child: Opacity(
-            opacity: value,
-            child: child,
-          ),
+          child: Opacity(opacity: value, child: child),
         );
       },
       child: Card(
         elevation: 6,
         shadowColor: Colors.deepPurple.shade300,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -154,10 +139,7 @@ class ProductItem extends StatelessWidget {
                     product.imageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
-                      return const Icon(
-                        Icons.image_not_supported,
-                        size: 50,
-                      );
+                      return const Icon(Icons.image_not_supported, size: 50);
                     },
                   ),
                 ),
@@ -205,9 +187,7 @@ class ProductItem extends StatelessWidget {
                           ..hideCurrentSnackBar()
                           ..showSnackBar(
                             SnackBar(
-                              content: Text(
-                                'Added ${product.name} to cart!',
-                              ),
+                              content: Text('Added ${product.name} to cart!'),
                               behavior: SnackBarBehavior.floating,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
